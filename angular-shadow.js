@@ -16,7 +16,7 @@
         link: function(scope, element){
           element = element[0];
 
-          appendShadowStyleToHead();
+          prependShadowStyleToHead();
 
           var divEle = document.createElement('div');
           divEle.classList.add('ss-bottom-shadow');
@@ -47,14 +47,14 @@
       box-shadow: 0px 0px 3px 1px #ccc;\
     }\n\
   ';
-  function appendShadowStyleToHead(){
+  function prependShadowStyleToHead(){
     if(!document.querySelector('#'+STYLE_ID)){
       var styleEle = document.createElement('style');
       styleEle.id = STYLE_ID;
       styleEle.type = 'text/css';
       var styleContentEle = document.createTextNode(STYLE_CONTENT);
       styleEle.appendChild(styleContentEle);
-      document.head.appendChild(styleEle);
+      document.head.insertBefore(styleEle, document.head.firstChild);
     }
   }
 })();
