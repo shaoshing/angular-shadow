@@ -3,7 +3,7 @@ angular-shadow
 
 This module has two directives to help show top / bottom shadow easily.
 
-
+![Examples](/examples.png?raw=true)
 
 # Usage
 
