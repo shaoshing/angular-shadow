@@ -10,21 +10,41 @@
     .directive('ssBottomShadow', function(){
       return {
         restrict: 'A',
-        scope: {
-          'className': '@ssBottomShadow'
-        },
-        link: function(scope, element){
+        link: function(scope, element, attrs){
           element = element[0];
 
           prependShadowStyleToHead();
 
           var divEle = document.createElement('div');
-          divEle.classList.add('ss-bottom-shadow-layer');
+          divEle.classList.add('ss-shadow-layer');
           element.appendChild(divEle);
 
           var div2Ele = document.createElement('div');
           div2Ele.classList.add('ss-bottom-shadow');
-          div2Ele.classList.add(scope.className);
+          div2Ele.classList.add('ss-shadow');
+          if(attrs.ssBottomShadow)
+            div2Ele.classList.add(attrs.ssBottomShadow);
+          divEle.appendChild(div2Ele);
+        }
+      };
+    })
+    .directive('ssTopShadow', function(){
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs){
+          element = element[0];
+
+          prependShadowStyleToHead();
+
+          var divEle = document.createElement('div');
+          divEle.classList.add('ss-shadow-layer');
+          element.insertBefore(divEle, element.firstChild);
+
+          var div2Ele = document.createElement('div');
+          div2Ele.classList.add('ss-top-shadow');
+          div2Ele.classList.add('ss-shadow');
+          if(attrs.ssTopShadow)
+            div2Ele.classList.add(attrs.ssTopShadow);
           divEle.appendChild(div2Ele);
         }
       };
@@ -32,28 +52,33 @@
 
   var STYLE_ID = 'ss-angular-shadow';
   var STYLE_CONTENT ='\
-    .ss-bottom-shadow-layer{\n\
+    .ss-shadow-layer{\n\
       display: block;\
       position: relative;\
       width: 100%;\
       opacity: 0.99;\
     }\n\
-    .ss-bottom-shadow{\n\
+    .ss-shadow{\n\
       width: 100%;\
       height: 100%;\
       background-color: white;\
       height: 5px;\
     }\n\
-    .ss-bottom-shadow:after {\n\
+    .ss-shadow:after {\n\
       position: absolute;\
       content: "";\
       height: 1px;\
       width: calc(100% - 6px);\
-      margin-top: 4px;\
       margin-left: 3px;\
       display: block;\
       z-index: -1;\
-      box-shadow: 0px 0px 3px 1px #ccc;\
+      box-shadow: 0 0 3px 1px #ccc;\
+    }\n\
+    .ss-bottom-shadow:after {\n\
+      margin-top: 4px;\
+    }\n\
+    .ss-top-shadow:after {\n\
+      margin-top: 0px;\
     }\n\
   ';
   function prependShadowStyleToHead(){
