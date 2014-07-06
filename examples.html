@@ -17,7 +17,6 @@
 
     .fixed{
       position: fixed;
-      padding-top: 5px;
       width: 600px;
       border: 1px solid #ccc;
       text-align: center;
@@ -29,6 +28,9 @@
 
     .example-1{
       top: 0;
+      /* the shadow element takes 5px of space in height by default, so you need to append 5px on
+        the top to center the element */
+      padding-top: 5px;
     }
 
     .example-2{
@@ -37,22 +39,33 @@
 
     .example-3{
       bottom: 0;
+      padding-bottom: 7px;
+      background-color: #F5D328;
+    }
+    .example-3-top-shadow{
+      height: 7px;
+      background-color: #F5D328;
+    }
+    .example-3-top-shadow:after{
+      /* default shadow style:
+            box-shadow: 0px 0px 3px 1px #ccc;  */
+      box-shadow: 0 0 5px 2px #F5D328;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="example-1 fixed" ss-bottom-shadow="example-1-bottom-shadow">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    <div class="example-1 fixed" ss-bottom-shadow>
+      Bottom Shadow only (there is no shadow on the left and right side)
     </div>
 
-    <div class="example-2 fixed" ss-bottom-shadow="example-1-bottom-shadow">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    <div class="example-2 fixed" ss-bottom-shadow ss-top-shadow>
+      Top and Bottom Shadow
     </div>
 
-    <div class="example-3 fixed" ss-bottom-shadow="example-1-bottom-shadow">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    <div class="example-3 fixed" ss-top-shadow="example-3-top-shadow">
+      Customized Shadow style
     </div>
 
   Ut bibendum purus pulvinar, mattis nisl at, tincidunt sapien. Donec id nunc vehicula, rutrum ipsum vel, sodales eros. Quisque porttitor accumsan dapibus. Nam condimentum faucibus purus non ornare. Duis vel rhoncus lorem, ut dictum tortor. Nam fringilla, nisl vitae rhoncus accumsan, augue nulla tincidunt nunc, et cursus velit augue in tellus. Nam sed scelerisque leo, vitae placerat nibh. Sed mattis aliquam metus non congue. Nulla porta rutrum ultricies.
