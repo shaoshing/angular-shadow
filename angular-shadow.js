@@ -17,13 +17,13 @@
 
           var divEle = document.createElement('div');
           divEle.classList.add('ss-shadow-layer');
+          if(attrs.ssBottomShadow)
+            divEle.classList.add(attrs.ssBottomShadow);
           element.appendChild(divEle);
 
           var div2Ele = document.createElement('div');
           div2Ele.classList.add('ss-bottom-shadow');
           div2Ele.classList.add('ss-shadow');
-          if(attrs.ssBottomShadow)
-            div2Ele.classList.add(attrs.ssBottomShadow);
           divEle.appendChild(div2Ele);
         }
       };
@@ -38,13 +38,13 @@
 
           var divEle = document.createElement('div');
           divEle.classList.add('ss-shadow-layer');
+          if(attrs.ssTopShadow)
+            divEle.classList.add(attrs.ssTopShadow);
           element.insertBefore(divEle, element.firstChild);
 
           var div2Ele = document.createElement('div');
           div2Ele.classList.add('ss-top-shadow');
           div2Ele.classList.add('ss-shadow');
-          if(attrs.ssTopShadow)
-            div2Ele.classList.add(attrs.ssTopShadow);
           divEle.appendChild(div2Ele);
         }
       };
@@ -72,7 +72,7 @@
       margin-left: 3px;\
       display: block;\
       z-index: -1;\
-      box-shadow: 0 0 3px 1px #ccc;\
+      box-shadow: 0 0 3px 2px #ccc;\
     }\n\
     .ss-bottom-shadow:after {\n\
       margin-top: 4px;\
